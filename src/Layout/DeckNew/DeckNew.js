@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { createDeck, listDecks } from "../../utils/api/index";
+import { createDeck } from "../../utils/api/index";
 
-function NewDeck() {
-	const [deckList, setDeckList] = useState([]);
+function DeckNew() {
+	
+	const date = new Date();
+	const initId =
+	date.getDate() +
+	"-" +
+	date.getHours() +
+	"-" +
+	date.getSeconds() +
+	"-" +
+	date.getMilliseconds();
+	
+	const [deckId, setDeckId] = useState(initId);
 
-	useEffect(() => {
-		const abortController = new AbortController();
-		const getListDecks = async () => {
-			try {
-				const data = await listDecks(abortController.signal);
-				setDeckList([...data]);
-			} catch (error) {
-				console.log(error.message);
-			}
-		};
-		getListDecks();
-		return () => abortController.abort();
-	}, []);
-
-	const deckId = deckList.length;
 	const [submitted, setSubmitted] = useState(false);
+	const submitHandler = (event) => {
+		event.preventDefault();
+		setSubmitted(!submitted);
+		setTimeout(() => {
+			history.push(`/decks/${deckId}`);
+		}, 1000);
+	};
 	const initDeck = {
 		cards: [],
 		description: "",
@@ -42,15 +45,10 @@ function NewDeck() {
 				}
 			};
 			addDeck();
-			// history.push(`/decks/${deckId}`)
 			return () => abortController.abort();
 		}
 	}, [deckId, history, newDeck, submitted]);
 
-	const submitHandler = (event) => {
-		event.preventDefault();
-		setSubmitted(!submitted);
-	};
 	const changeHandler = (event) => {
 		const deckKey = event.target.name;
 		const deckValue = event.target.value;
@@ -117,4 +115,4 @@ function NewDeck() {
 		</div>
 	);
 }
-export default NewDeck;
+export default DeckNew;
