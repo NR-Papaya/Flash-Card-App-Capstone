@@ -15,7 +15,7 @@ export default function NewCard() {
 		id: cardId,
 		front: "",
 		back: "",
-		deckId: toString(deckId),
+		deckId: deckId,
 	};
 	const [card, setCard] = useState(initCard);
 	const [currentDeck, setCurrentDeck] = useState(null);
