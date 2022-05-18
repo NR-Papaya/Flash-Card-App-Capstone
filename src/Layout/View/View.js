@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { readDeck, deleteDeck } from "../../utils/api/index";
+import { readDeck, deleteDeck, deleteCard } from "../../utils/api/index";
 //---------Components
 import ViewCards from "./ViewCards";
 //-------------------
 
 export default function View() {
 	const [currentDeck, setCurrentDeck] = useState(null);
-	const [deleteCheck, setDeleteCheck] = useState(false);
 	const history = useHistory();
 	const { deckId } = useParams();
 
@@ -26,32 +25,33 @@ export default function View() {
 		return () => abortController.abort();
 	}, [deckId]);
 
-	useEffect(() => {
-		const abortController = new AbortController();
 
-		const deleteThisDeck = async () => {
+	const deleteHandler = async (event) => {
+		if (window.confirm("Delete this deck?")) {
+			const abortController = new AbortController();
 			try {
 				await deleteDeck(deckId, abortController.signal);
+				history.push("/")
 			} catch (error) {
 				console.log(error.message);
 			}
-		};
-
-		if (deleteCheck) {
-			deleteThisDeck();
-			history.push("/");
-		}
-	}, [deleteCheck, deckId, history]);
-
-	const deleteHandler = (event) => {
-		if (window.confirm("Delete this deck?")) {
-			setDeleteCheck(!deleteCheck);
 		}
 	};
+	const deleteHandlerCards = async (event)=>{
+		const cardDeleteId = event.target.id
+		if (window.confirm("Delete this card?")){
+			const abortController = new AbortController()
+			try{
+				await deleteCard(cardDeleteId,abortController.signal)
+				history.push(`/decks/${currentDeck.id}`)
+			}
+			catch(error){console.log(error.message)}
+		}
+	}
 
 	if (currentDeck) {
 		const returnableCardsList = currentDeck.cards.map((card, index) => (
-			<ViewCards card={card} key={index} />
+			<ViewCards card={card} key={index} deleteHandlerCards={deleteHandlerCards}/>
 		));
 		return (
 			<React.Fragment>
@@ -111,6 +111,6 @@ export default function View() {
 			</React.Fragment>
 		);
 	} else {
-		return <p>not found here</p>;
+		return null;
 	}
 }

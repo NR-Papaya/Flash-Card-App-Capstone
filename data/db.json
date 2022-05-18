@@ -1,55 +1,41 @@
 {
   "decks": [
     {
-      "description": "11111111111111111111",
       "id": 1,
-      "name": "11111111111"
-    },
-    {
-      "description": "sssss",
-      "id": 864,
-      "name": "ssss"
-    },
-    {
-      "description": "ssssssssssssssss",
-      "id": 19,
-      "name": "ssss"
-    },
-    {
-      "description": "ssssssssssssssss",
-      "id": 17,
-      "name": "sssssss"
-    },
-    {
-      "description": "sssss",
-      "id": "16-20-44-635",
-      "name": "sss"
-    },
-    {
-      "description": "saaaaaaaaaaaaa",
-      "id": "16-20-1-509",
-      "name": "saaaaaaaaaaaa"
-    },
-    {
-      "description": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      "id": "16-20-29-811",
-      "name": "eeeeeeeeeeeeeee"
-    },
-    {
-      "description": "hhhhhhhhhhhhhhhhhhhhhhhhhh",
-      "id": "16-20-29-383",
-      "name": "hhhhhhhhhh"
-    },
-    {
-      "description": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-      "id": "16-20-11-853",
-      "name": "zzzzzzzzzzzzzzzzzzzzzz"
-    },
-    {
-      "description": "xxxxxxxxxxxxxxxxxxxxx",
-      "id": "16-20-51-962",
-      "name": "xxxxxxxxxxxxxxx"
+      "name": "Rendering in React",
+      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. "
     }
   ],
-  "cards": []
+  "cards": [
+    {
+      "id": 1,
+      "front": "Differentiate between Real DOM and Virtual DOM.",
+      "back": "Virtual DOM updates are faster but do not directly update the HTML",
+      "deckId": 1
+    },
+    {
+      "id": 2,
+      "front": "How do you modify the state of a different React component?",
+      "back": "Not at all! State is visible to the component only.",
+      "deckId": 1
+    },
+    {
+      "id": 3,
+      "front": "How do you pass data 'down' to a React child component?",
+      "back": "As properties or props",
+      "deckId": 1
+    },
+    {
+      "id": "20224181141472",
+      "front": "aaaaabbbb",
+      "back": "aaaabbbb",
+      "deckId": 1
+    },
+    {
+      "id": "2022418110795",
+      "front": "ccccccccccc",
+      "back": "cccccccccccc",
+      "deckId": 1
+    }
+  ]
 }

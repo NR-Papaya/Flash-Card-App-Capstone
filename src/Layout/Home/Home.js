@@ -7,8 +7,6 @@ import DeckList from "./DeckList";
 
 export default function Home() {
 	const [deckList, setDeckList] = useState([]);
-	const [deleteEvent, setDeleteEvent] = useState(false);
-	const [idToDelete, setIdToDelete] = useState(null);
 
 	useEffect(() => {
 		const abortController = new AbortController();
@@ -25,27 +23,19 @@ export default function Home() {
 		return () => abortController.abort();
 	}, []);
 
-	useEffect(() => {
-		const abortController = new AbortController();
-		if (deleteEvent) {
-			const deleteADeck = async () => {
-				try {
-					await deleteDeck(idToDelete, abortController.signal);
-					const data = await listDecks(abortController.signal);
-					setDeckList([...data]);
-				} catch (error) {
-					console.log(error.message);
-				}
-			};
-			deleteADeck();
-			return () => abortController.abort();
-		}
-	}, [deleteEvent, idToDelete]);
-
-	const deleteHandler = (event) => {
+	const deleteHandler = async (event) => {
 		const deleteId = event.target.parentNode.parentNode.parentNode.id;
-		setDeleteEvent(!deleteEvent);
-		setIdToDelete(deleteId);
+		if(window.confirm("Delete this deck?")){
+			const abortController = new AbortController();
+			try {
+				await deleteDeck(deleteId, abortController.signal);
+				const data = await listDecks(abortController.signal);
+				setDeckList([...data]);
+			} catch (error) {
+				console.log(error.message);
+			}
+		}
+			
 	};
 
 	if (deckList) {

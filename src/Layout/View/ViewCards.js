@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function ViewCards({ card }) {
+export default function ViewCards({ card, deleteHandlerCards }) {
 	return (
 		<div className="card w-100">
 			<div className="card-body">
@@ -21,13 +22,16 @@ export default function ViewCards({ card }) {
 					</p>
 				</div>
 				<div style={{ display: "flex", justifyContent: "right" }}>
-					<button
+					<Link
+						to={`/decks/${card.deckId}/cards/${card.id}/edit`}
 						className="btn btn-secondary"
 						style={{ margin: "5px" }}
 					>
 						Edit
-					</button>
+					</Link>
 					<button
+						id={card.id}
+						onClick={deleteHandlerCards}
 						className="btn btn-danger"
 						style={{ margin: "5px" }}
 					>
