@@ -5,7 +5,7 @@ import StudyCard from "../Study/StudyCard"
 //--------------------
 
 export default function Cards({ currentDeck }) {
-	const [cardList, setCardList] = useState(currentDeck.cards);
+	const cardList = currentDeck.cards;
 	const [indexCount, setIndexCount] = useState(0);
 	const [cardFaceFront, setCardFaceFront] = useState(true);
 

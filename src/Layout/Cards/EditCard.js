@@ -37,7 +37,7 @@ export default function EditCard() {
 		};
 		viewCurrentCard();
 		return () => abortController.abort();
-	}, [deckId]);
+	}, [deckId,cardId]);
 
 	const history = useHistory();
 	const submitHandler = async (event) => {
@@ -82,6 +82,7 @@ export default function EditCard() {
 					submitHandler={submitHandler}
 					card={card}
 					onChangeHandler={onChangeHandler}
+					deckId={deckId}
 				/>
 			</div>
 		);

@@ -1,7 +1,13 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
-export default function CardForm({submitHandler,card,onChangeHandler}) {
+export default function CardForm({
+	submitHandler,
+	card,
+	onChangeHandler,
+	deckId,
+}) {
+	console.log(card);
 	const cardFormInputs = (
 		<form onSubmit={submitHandler}>
 			<div className="form-group">
@@ -12,10 +18,10 @@ export default function CardForm({submitHandler,card,onChangeHandler}) {
 					className="form-control"
 					id="front"
 					rows="3"
-                    value={card.front}
-                    name="front"
-                    onChange={onChangeHandler}
-                    required
+					value={card.front}
+					name="front"
+					onChange={onChangeHandler}
+					required
 				></textarea>
 			</div>
 			<div className="form-group">
@@ -26,15 +32,15 @@ export default function CardForm({submitHandler,card,onChangeHandler}) {
 					className="form-control"
 					id="back"
 					rows="3"
-                    value={card.back}
-                    name="back"
-                    onChange={onChangeHandler}
-                    required
+					value={card.back}
+					name="back"
+					onChange={onChangeHandler}
+					required
 				></textarea>
 			</div>
 			<div style={{ display: "flex" }}>
 				<Link
-					to={`/decks/${card.deckId}`}
+					to={`/decks/${deckId}`}
 					className="btn btn-secondary"
 					style={{ margin: "0 10px 0 0" }}
 				>
@@ -51,5 +57,5 @@ export default function CardForm({submitHandler,card,onChangeHandler}) {
 		</form>
 	);
 
-	return (<React.Fragment>{cardFormInputs}</React.Fragment>);
+	return <React.Fragment>{cardFormInputs}</React.Fragment>;
 }

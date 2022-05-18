@@ -88,7 +88,7 @@ function Edit() {
 					</div>
 					<div className="form-group">
 						<label htmlFor="deckDescription">
-							Example textarea
+							Description
 						</label>
 						<textarea
 							className="form-control"
@@ -103,7 +103,7 @@ function Edit() {
 					</div>
 					<div style={{ display: "flex" }}>
 						<Link
-							to="/"
+							to={`/decks/${deckId}`}
 							className="btn btn-secondary"
 							style={{ margin: "0 10px 0 0" }}
 						>
