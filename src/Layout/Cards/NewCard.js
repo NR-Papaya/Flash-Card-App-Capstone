@@ -8,12 +8,14 @@ import CardForm from "./CardForm";
 export default function NewCard() {
 	let { deckId } = useParams();
 	const date = new Date();
-	const cardId = `${date.getUTCFullYear()}${date.getUTCMonth()}${date.getDate()}${date.getHours()}${date.getSeconds()}${date.getMilliseconds()}`;
+	const cardId = parseInt(
+		`${date.getUTCFullYear()}${date.getUTCMonth()}${date.getDate()}${date.getHours()}${date.getSeconds()}${date.getMilliseconds()}`
+	);
 	const initCard = {
 		id: cardId,
 		front: "",
 		back: "",
-		deckId: deckId,
+		deckId: toString(deckId),
 	};
 	const [card, setCard] = useState(initCard);
 	const [currentDeck, setCurrentDeck] = useState(null);

@@ -43,7 +43,8 @@ export default function View() {
 			const abortController = new AbortController()
 			try{
 				await deleteCard(cardDeleteId,abortController.signal)
-				history.push(`/decks/${currentDeck.id}`)
+				const data = await readDeck(deckId, abortController.signal);
+				setCurrentDeck(data);
 			}
 			catch(error){console.log(error.message)}
 		}

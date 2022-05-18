@@ -4,14 +4,12 @@ import { createDeck } from "../../utils/api/index";
 
 function DeckNew() {
 	const date = new Date();
-	const initId = `${date.getUTCFullYear()}${date.getUTCMonth()}${date.getDate()}${date.getHours()}${date.getSeconds()}${date.getMilliseconds()}`;
-
-	const [deckId, setDeckId] = useState(initId);
+	const initId = parseInt(`${date.getUTCFullYear()}${date.getUTCMonth()}${date.getDate()}${date.getHours()}${date.getSeconds()}${date.getMilliseconds()}`);
 
 	const initDeck = {
 		cards: [],
 		description: "",
-		id: deckId,
+		id: initId,
 		name: "",
 	};
 	const [newDeck, setNewDeck] = useState(initDeck);
@@ -28,7 +26,7 @@ function DeckNew() {
 		const abortController = new AbortController();
 		try {
 			await createDeck(newDeck, abortController.signal);
-			history.push(`/decks/${deckId}`);
+			history.push(`/decks/${newDeck.id}`);
 		} catch (error) {
 			console.log(error.message);
 		}
