@@ -25,34 +25,42 @@ export default function View() {
 		return () => abortController.abort();
 	}, [deckId]);
 
-
 	const deleteHandler = async (event) => {
-		if (window.confirm("Delete this deck?")) {
+		if (
+			window.confirm(
+				"Delete this deck? \n\nYou will not be able to recover it."
+			)
+		) {
 			const abortController = new AbortController();
 			try {
 				await deleteDeck(deckId, abortController.signal);
-				history.push("/")
+				history.push("/");
 			} catch (error) {
 				console.log(error.message);
 			}
 		}
 	};
-	const deleteHandlerCards = async (event)=>{
-		const cardDeleteId = event.target.id
-		if (window.confirm("Delete this card?")){
-			const abortController = new AbortController()
-			try{
-				await deleteCard(cardDeleteId,abortController.signal)
+	const deleteHandlerCards = async (event) => {
+		const cardDeleteId = event.target.id;
+		if (window.confirm("Delete this card?\n\nYou will not be able to recover it.")) {
+			const abortController = new AbortController();
+			try {
+				await deleteCard(cardDeleteId, abortController.signal);
 				const data = await readDeck(deckId, abortController.signal);
 				setCurrentDeck(data);
+			} catch (error) {
+				console.log(error.message);
 			}
-			catch(error){console.log(error.message)}
 		}
-	}
+	};
 
 	if (currentDeck) {
 		const returnableCardsList = currentDeck.cards.map((card, index) => (
-			<ViewCards card={card} key={index} deleteHandlerCards={deleteHandlerCards}/>
+			<ViewCards
+				card={card}
+				key={index}
+				deleteHandlerCards={deleteHandlerCards}
+			/>
 		));
 		return (
 			<React.Fragment>

@@ -78,6 +78,7 @@ export default function NewCard() {
 					card={card}
 					onChangeHandler={onChangeHandler}
 					deckId={deckId}
+					type="Save"
 				/>
 			</div>
 		);

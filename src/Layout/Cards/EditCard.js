@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
-import { readCard, readDeck,updateCard } from "../../utils/api";
+import { readCard, readDeck, updateCard } from "../../utils/api";
 //----------components
 import CardForm from "./CardForm";
 //--------------------
@@ -24,7 +24,7 @@ export default function EditCard() {
 		viewCurrentDeck();
 		return () => abortController.abort();
 	}, [deckId]);
-	
+
 	useEffect(() => {
 		const abortController = new AbortController();
 		const viewCurrentCard = async () => {
@@ -37,7 +37,7 @@ export default function EditCard() {
 		};
 		viewCurrentCard();
 		return () => abortController.abort();
-	}, [deckId,cardId]);
+	}, [deckId, cardId]);
 
 	const history = useHistory();
 	const submitHandler = async (event) => {
@@ -62,7 +62,7 @@ export default function EditCard() {
 				<nav aria-label="breadcrumb">
 					<ol className="breadcrumb">
 						<li className="breadcrumb-item">
-							<Link to="/">Home</Link>
+							<Link to="/"> Home</Link>
 						</li>
 						<li className="breadcrumb-item">
 							<Link to={`/decks/${deckId}`}>
@@ -83,6 +83,7 @@ export default function EditCard() {
 					card={card}
 					onChangeHandler={onChangeHandler}
 					deckId={deckId}
+					type="Submit"
 				/>
 			</div>
 		);

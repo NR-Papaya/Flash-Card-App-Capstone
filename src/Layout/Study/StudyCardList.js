@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 //----------components
-import StudyCard from "../Study/StudyCard"
+import StudyCard from "../Study/StudyCard";
 //--------------------
 
 export default function Cards({ currentDeck }) {
@@ -12,16 +12,21 @@ export default function Cards({ currentDeck }) {
 	const cardFaceHandler = () => {
 		setCardFaceFront(!cardFaceFront);
 	};
-	
-	const history = useHistory()
-	
+
+	const history = useHistory();
+
 	const indexCountHandler = () => {
 		if (indexCount === cardList.length - 1) {
-			console.log("line 16 cards");
-			if (window.confirm("Restart Cards?")) {
+			if (
+				window.confirm(
+					"Restart Cards? \n\nClick `Cancel` to return to the home page."
+				)
+			) {
 				setCardFaceFront(!cardFaceFront);
 				setIndexCount(0);
-			}else{history.push("/")}
+			} else {
+				history.push("/");
+			}
 		} else {
 			setCardFaceFront(!cardFaceFront);
 			setIndexCount(indexCount + 1);
@@ -59,7 +64,12 @@ export default function Cards({ currentDeck }) {
 					You need at least 3 cards to study. There are{" "}
 					{cardList.length} cards in this deck.
 				</p>
-				<button className="btn btn-primary">Add Cards</button>
+				<Link
+					to={`/decks/${currentDeck.id}/cards/new`}
+					className="btn btn-primary"
+				>
+					Add Cards
+				</Link>
 			</React.Fragment>
 		);
 	} else {

@@ -6,8 +6,8 @@ export default function CardForm({
 	card,
 	onChangeHandler,
 	deckId,
+	type
 }) {
-	console.log(card);
 	const cardFormInputs = (
 		<form onSubmit={submitHandler}>
 			<div className="form-group">
@@ -51,7 +51,7 @@ export default function CardForm({
 					className="btn btn-primary"
 					style={{ margin: "0 10px 0 0" }}
 				>
-					Submit
+					{type}
 				</button>
 			</div>
 		</form>
