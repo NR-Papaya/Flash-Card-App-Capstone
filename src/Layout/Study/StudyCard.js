@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function StudyCard({
-	card,
 	content,
 	cardNum,
 	cardCount,

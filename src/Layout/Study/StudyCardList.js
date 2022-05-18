@@ -14,7 +14,7 @@ export default function Cards({ currentDeck }) {
 	};
 
 	const history = useHistory();
-
+	//index counter is used to control which card in the array is shown and it resets the face to front when moving to the next card in the array
 	const indexCountHandler = () => {
 		if (indexCount === cardList.length - 1) {
 			if (
@@ -32,10 +32,9 @@ export default function Cards({ currentDeck }) {
 			setIndexCount(indexCount + 1);
 		}
 	};
-
+	//cardlistfront/back gennerate an array of card components to alternate between using the cardFaceFront state and display buttons accordingly
 	const cardListFront = cardList.map((card, index) => (
 		<StudyCard
-			card={card}
 			key={card.id}
 			cardNum={index + 1}
 			face={cardFaceFront}
@@ -46,7 +45,6 @@ export default function Cards({ currentDeck }) {
 	));
 	const cardListBack = cardList.map((card, index) => (
 		<StudyCard
-			card={card}
 			key={card.id}
 			cardNum={index + 1}
 			face={cardFaceFront}
