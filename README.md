@@ -19,6 +19,7 @@ This project is designed to test your ability to work with rendering and state m
 
 - Debugging React code through console output and using the VS Code debugger
 
+## Branch / Clone
 **This project uses dependencies which may inhibit running through the NPM Start Script, If this project is branched/cloned, you may need to ensure the package.json Start Script is as follows: "start": "react-scripts --openssl-legacy-provider start"**
 
 **Additionally, running NPM Start will host both the API and React Application on your local machine.**
